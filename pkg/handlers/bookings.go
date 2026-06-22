@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"bookly-backend/internal/middleware"
-	"bookly-backend/internal/models"
+	"bookly-backend/pkg/middleware"
+	"bookly-backend/pkg/models"
 
 	"cloud.google.com/go/firestore"
 	"google.golang.org/api/iterator"

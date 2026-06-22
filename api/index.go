@@ -13,10 +13,10 @@ import (
 	"net/http"
 	"sync"
 
-	"bookly-backend/internal/config"
-	"bookly-backend/internal/db"
-	"bookly-backend/internal/handlers"
-	"bookly-backend/internal/middleware"
+	"bookly-backend/pkg/config"
+	"bookly-backend/pkg/db"
+	"bookly-backend/pkg/handlers"
+	"bookly-backend/pkg/middleware"
 
 	"cloud.google.com/go/firestore"
 	"firebase.google.com/go/v4/auth"

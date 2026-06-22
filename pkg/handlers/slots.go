@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"sort"
 
-	"bookly-backend/internal/models"
+	"bookly-backend/pkg/models"
 
 	"cloud.google.com/go/firestore"
 	"google.golang.org/api/iterator"

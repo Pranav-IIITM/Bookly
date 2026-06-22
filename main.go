@@ -14,8 +14,8 @@ import (
 	"log"
 	"net/http"
 
-	"bookly-backend/internal/config"
-	"bookly-backend/internal/db"
+	"bookly-backend/pkg/config"
+	"bookly-backend/pkg/db"
 
 	// Re-use the Vercel handler so all routes are identical.
 	api "bookly-backend/api"

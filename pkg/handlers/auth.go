@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"bookly-backend/internal/middleware"
+	"bookly-backend/pkg/middleware"
 )
 
 // AuthHandler groups endpoints related to authentication verification.

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"bookly-backend/internal/middleware"
-	"bookly-backend/internal/models"
+	"bookly-backend/pkg/middleware"
+	"bookly-backend/pkg/models"
 
 	"cloud.google.com/go/firestore"
 	"github.com/go-chi/chi/v5"

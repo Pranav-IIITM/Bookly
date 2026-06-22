@@ -1,7 +1,7 @@
 # Environment & secrets
 .env
 *.env.local
-internal/backendfirebase-credentials.json
+pkg/backendfirebase-credentials.json
 
 # Go build artefacts
 *.exe
