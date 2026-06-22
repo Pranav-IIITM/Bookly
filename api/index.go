@@ -72,6 +72,9 @@ func newRouter(authClient *auth.Client, firestoreClient *firestore.Client) http.
 	r.Use(chimw.Recoverer)
 	r.Use(cors.Handler(cors.Options{
 		AllowedOrigins: []string{
+			"https://bookly-gules.vercel.app",
+			"https://booking-platform-943f9.web.app",
+			"https://booking-platform-943f9.firebaseapp.com",
 			"http://localhost:3000",
 			"http://localhost:5500",
 			"http://127.0.0.1:5500",
