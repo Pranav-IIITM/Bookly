@@ -1,0 +1,21 @@
+# Environment & secrets
+.env
+*.env.local
+pkg/backendfirebase-credentials.json
+
+# Go build artefacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,4 +1,4 @@
-const API_BASE = "https://bookly-go.up.railway.app";
+const API_BASE = "https://bookly-gules.vercel.app";
 
 const slotsList = document.querySelector("#slots-list");
 const refreshButton = document.querySelector("#refresh-slots");
