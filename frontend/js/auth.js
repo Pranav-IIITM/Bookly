@@ -1,4 +1,4 @@
-const API_BASE = "https://bookly-a33k.vercel.app";
+const API_BASE = "https://bookly-gules.vercel.app";
 
 import {
 	auth,
