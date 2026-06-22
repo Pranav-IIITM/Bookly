@@ -85,7 +85,7 @@ func bootstrap() (*auth.Client, *firestore.Client, error) {
 // Firebase credentials. It prefers FIREBASE_CREDENTIALS_JSON (base64) and
 // falls back to FIREBASE_CREDENTIALS_PATH (file).
 func credentialOption() ([]option.ClientOption, error) {
-	// 1. Base64-encoded JSON (recommended for Vercel / CI).
+	// 1. Base64-encoded JSON (Vercel)
 	if encoded := os.Getenv("FIREBASE_CREDENTIALS_JSON"); encoded != "" {
 		decoded, err := base64.StdEncoding.DecodeString(encoded)
 		if err != nil {
@@ -94,14 +94,8 @@ func credentialOption() ([]option.ClientOption, error) {
 		return []option.ClientOption{option.WithCredentialsJSON(decoded)}, nil
 	}
 
-	// 2. File path (local development).
-	if path := os.Getenv("FIREBASE_CREDENTIALS_PATH"); path != "" {
-		return []option.ClientOption{option.WithCredentialsFile(path)}, nil
-	}
-
-	return nil, errors.New(
-		"set FIREBASE_CREDENTIALS_JSON (base64) or FIREBASE_CREDENTIALS_PATH (file)",
-	)
+	// 2. Direct credentials file
+	return []option.ClientOption{option.WithCredentialsFile("pkg/backendfirebase-credentials.json")}, nil
 }
 
 // GetEnv returns the value of an environment variable or a fallback default.
