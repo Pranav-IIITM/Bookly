@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in or create a Bookly account to reserve slots and manage your bookings.">
+  <title>Sign In | Bookly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
+  <link rel="icon" type="image/png" href="favicon.png?v=2">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Bookly</a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="slots.html">Slots</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <main class="page-shell auth-shell">
+    <section class="auth-panel">
+      <div class="section-heading compact">
+        <p class="eyebrow">Secure access</p>
+        <h1>Sign in or create an account</h1>
+      </div>
+
+      <div class="tab-row" role="tablist" aria-label="Authentication mode">
+        <button class="tab-button active" type="button" data-auth-mode="login">Login</button>
+        <button class="tab-button" type="button" data-auth-mode="signup">Sign Up</button>
+      </div>
+
+      <form id="auth-form" class="form-stack">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" minlength="6" required>
+
+        <button id="auth-submit" class="button" type="submit">Login</button>
+      </form>
+
+      <div class="divider"><span>or</span></div>
+
+      <button id="google-login" class="button button-secondary button-full" type="button">Continue with Google</button>
+      <button id="logout-button" class="button button-ghost button-full hidden" type="button">Logout</button>
+
+      <p id="auth-status" class="status-message" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Confirm your slot reservation with your Firebase-authenticated Bookly account.">
+  <title>Book a Slot | Bookly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap">
+  <link rel="icon" type="image/png" href="favicon.png?v=2">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Bookly</a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+      <a href="slots.html">Slots</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a class="button button-small" href="auth.html">Sign In</a>
+    </nav>
+  </header>
+
+  <main class="page-shell form-page">
+    <section class="section-heading compact">
+      <p class="eyebrow">Reservation</p>
+      <h1>Book a slot</h1>
+      <p>Submit your booking with an authenticated Firebase token.</p>
+    </section>
+
+    <form id="booking-form" class="booking-panel form-stack">
+      <label for="slot">Slot</label>
+      <select id="slot" name="slot" required>
+        <option value="">Loading slots...</option>
+      </select>
+
+      <button id="booking-submit" class="button" type="submit">Confirm Booking</button>
+      <p id="booking-status" class="status-message" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <script type="module" src="js/booking.js"></script>
+</body>
+</html>
