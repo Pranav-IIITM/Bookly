@@ -30,7 +30,7 @@ func (h *SlotsHandler) List(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 		if err != nil {
-			writeError(w, http.StatusInternalServerError, "could not load slots")
+			writeError(w, http.StatusInternalServerError, "could not load slots: " + err.Error())
 			return
 		}
 
