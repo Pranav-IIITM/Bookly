@@ -118,17 +118,51 @@ func newRouter(authClient *auth.Client, firestoreClient *firestore.Client) http.
 		credJSON := os.Getenv("FIREBASE_CREDENTIALS_JSON")
 		
 		var credLen int
-		var credPrefix string
+		var keyID string
 		if credJSON != "" {
 			credLen = len(credJSON)
-			if credLen > 10 {
-				credPrefix = credJSON[:10]
-			} else {
-				credPrefix = credJSON
+			decoded, err := base64.StdEncoding.DecodeString(credJSON)
+			if err == nil {
+				// Simple json parsing to get private_key_id
+				type cred struct {
+					PrivateKeyID string `json:"private_key_id"`
+				}
+				var c cred
+				// We can import encoding/json, but Chi already has it or we can do a simple string search or import json
+				// Let's import encoding/json to be safe, or just use string search to avoid import issues.
+				// Actually, string search is extremely safe and doesn't require modifying imports.
+				// e.g. "private_key_id": "..."
+				importJSON := string(decoded)
+				importIDStart := 0
+				for i := 0; i < len(importJSON)-16; i++ {
+					if importJSON[i:i+16] == `"private_key_id"` {
+						importIDStart = i + 16
+						break
+					}
+				}
+				if importIDStart > 0 {
+					// find next quotes
+					quoteCount := 0
+					var start, end int
+					for i := importIDStart; i < len(importJSON); i++ {
+						if importJSON[i] == '"' {
+							quoteCount++
+							if quoteCount == 1 {
+								start = i + 1
+							} else if quoteCount == 2 {
+								end = i
+								break
+							}
+						}
+					}
+					if start > 0 && end > start {
+						keyID = importJSON[start:end]
+					}
+				}
 			}
 		}
 		
-		res := fmt.Sprintf(`{"status":"ok","project_id":"%s","cred_length":%d,"cred_prefix":"%s"}`, projID, credLen, credPrefix)
+		res := fmt.Sprintf(`{"status":"ok","project_id":"%s","cred_length":%d,"key_id":"%s"}`, projID, credLen, keyID)
 		_, _ = w.Write([]byte(res))
 	})
 	r.Get("/api/slots", slotsHandler.List)
