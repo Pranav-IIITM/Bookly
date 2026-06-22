@@ -1,4 +1,4 @@
-const API_BASE = "https://bookly-go.up.railway.app";
+const API_BASE = "http://localhost:8080";
 
 import { getFreshIdToken, logoutUser, waitForAuthUser } from "./firebase-config.js";
 

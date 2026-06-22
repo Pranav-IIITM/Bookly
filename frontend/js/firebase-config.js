@@ -1,4 +1,4 @@
-const API_BASE = "https://bookly-go.up.railway.app";
+const API_BASE = "http://localhost:8080";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import {
