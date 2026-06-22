@@ -9,8 +9,10 @@ package api
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"sync"
 
 	"bookly-backend/pkg/config"
@@ -111,7 +113,23 @@ func newRouter(authClient *auth.Client, firestoreClient *firestore.Client) http.
 	r.Get("/api/health", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		_, _ = w.Write([]byte(`{"status":"ok"}`))
+		
+		projID := os.Getenv("FIREBASE_PROJECT_ID")
+		credJSON := os.Getenv("FIREBASE_CREDENTIALS_JSON")
+		
+		var credLen int
+		var credPrefix string
+		if credJSON != "" {
+			credLen = len(credJSON)
+			if credLen > 10 {
+				credPrefix = credJSON[:10]
+			} else {
+				credPrefix = credJSON
+			}
+		}
+		
+		res := fmt.Sprintf(`{"status":"ok","project_id":"%s","cred_length":%d,"cred_prefix":"%s"}`, projID, credLen, credPrefix)
+		_, _ = w.Write([]byte(res))
 	})
 	r.Get("/api/slots", slotsHandler.List)
 
