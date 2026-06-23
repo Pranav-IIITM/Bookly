@@ -2,7 +2,7 @@
 .env
 *.env.local
 .env.*
-!.env.example
+.env.example
 
 # Firebase credentials (service account keys)
 pkg/firebase-credentials.json
