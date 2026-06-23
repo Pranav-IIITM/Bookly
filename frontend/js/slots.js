@@ -37,6 +37,29 @@ function slotTime(slot) {
   return slot.time || slot.startTime || slot.range || "Time to be confirmed";
 }
 
+function sortSlots(slots) {
+  return [...slots].sort((a, b) => {
+    const toDate = (slot) => {
+      const datePart = slotDate(slot);
+      const timePart = slotTime(slot);
+      // Combine into a single string that Date.parse can handle
+      const combined = `${datePart} ${timePart}`;
+      const parsed = Date.parse(combined);
+      // Fall back to comparing the raw strings if parsing fails
+      return isNaN(parsed) ? combined : parsed;
+    };
+
+    const da = toDate(a);
+    const db = toDate(b);
+
+    if (typeof da === "number" && typeof db === "number") {
+      return da - db;
+    }
+    // Lexicographic fallback for unparseable formats
+    return String(da).localeCompare(String(db));
+  });
+}
+
 function renderSlots(slots) {
   slotsList.innerHTML = "";
 
@@ -101,7 +124,7 @@ async function fetchSlots() {
     }
 
     const data = await response.json();
-    const slots = normalizeSlots(data);
+    const slots = sortSlots(normalizeSlots(data));
     renderSlots(slots);
     setStatus(`${slots.length} slot${slots.length === 1 ? "" : "s"} loaded.`, "success");
   } catch (error) {
