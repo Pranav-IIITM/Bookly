@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8080";
+const API_BASE = "https://bookly-gules.vercel.app";
 
 import { getFreshIdToken, waitForAuthUser } from "./firebase-config.js";
 
