@@ -18,7 +18,7 @@
       <a href="index.html" aria-current="page">Home</a>
       <a href="slots.html">Slots</a>
       <a href="dashboard.html">Dashboard</a>
-      <a class="button button-small" href="auth.html">Sign In</a>
+      <a id="nav-auth-btn" class="button button-small" href="auth.html">Sign In</a>
     </nav>
   </header>
 
@@ -30,7 +30,7 @@
         <p class="hero-copy">Pick a slot, sign in once with Google or email, and your reservation is locked in — backed by a Go API and verified on every request with your Firebase token.</p>
         <div class="hero-actions">
           <a class="button" href="slots.html">View Open Slots</a>
-          <a class="button button-secondary" href="auth.html">Sign In to Book</a>
+          <a id="hero-auth-btn" class="button button-secondary" href="auth.html">Sign In to Book</a>
         </div>
       </div>
     </section>
@@ -67,5 +67,6 @@
       <a class="button" href="slots.html">Browse Slots</a>
     </section>
   </main>
+  <script type="module" src="js/nav-auth.js"></script>
 </body>
 </html>
