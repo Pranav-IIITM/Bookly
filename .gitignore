@@ -1,7 +1,14 @@
 # Environment & secrets
 .env
 *.env.local
+.env.*
+!.env.example
+
+# Firebase credentials (service account keys)
+pkg/firebase-credentials.json
 pkg/backendfirebase-credentials.json
+**/firebase-credentials*.json
+**/service-account*.json
 base64_credentials.txt
 
 # Go build artefacts

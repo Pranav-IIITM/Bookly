@@ -95,7 +95,7 @@ func credentialOption() ([]option.ClientOption, error) {
 	}
 
 	// 2. Direct credentials file
-	return []option.ClientOption{option.WithCredentialsFile("pkg/backendfirebase-credentials.json")}, nil
+	return []option.ClientOption{option.WithCredentialsFile("pkg/firebase-credentials.json")}, nil
 }
 
 // GetEnv returns the value of an environment variable or a fallback default.

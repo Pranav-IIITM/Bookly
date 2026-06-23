@@ -1,4 +1,4 @@
-const API_BASE = "https://bookly-gules.vercel.app";
+const API_BASE = "http://localhost:8080";
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
 import {
@@ -12,13 +12,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCrYg2tHmJR8eperOLgndykPJF-RXoZwto",
-  authDomain: "booking-platform-943f9.firebaseapp.com",
-  projectId: "booking-platform-943f9",
-  storageBucket: "booking-platform-943f9.firebasestorage.app",
-  messagingSenderId: "646294293293",
-  appId: "1:646294293293:web:fc37b5af8d8a3521ada1a4",
-  measurementId: "G-TZG35ZWDMB"
+  apiKey: "AIzaSyCyz4qb00_a2_Jm7MVxltBn8EOHDQ72aZA",
+  authDomain: "bookly-ab847.firebaseapp.com",
+  projectId: "bookly-ab847",
+  storageBucket: "bookly-ab847.firebasestorage.app",
+  messagingSenderId: "697360549366",
+  appId: "1:697360549366:web:ac10378fcb4dd994fbf3d7",
+  measurementId: "G-L6PN3D106H"
 };
 
 const TOKEN_KEY = "firebaseIdToken";

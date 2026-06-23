@@ -9,6 +9,8 @@ package api
 
 import (
 	"context"
+	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -75,8 +77,8 @@ func newRouter(authClient *auth.Client, firestoreClient *firestore.Client) http.
 	r.Use(cors.Handler(cors.Options{
 		AllowedOrigins: []string{
 			"https://bookly-5l61.vercel.app",
-			"https://booking-platform-943f9.web.app",
-			"https://booking-platform-943f9.firebaseapp.com",
+			"https://bookly-ab847.web.app",
+			"https://bookly-ab847.firebaseapp.com",
 			"http://localhost:3000",
 			"http://localhost:5500",
 			"http://127.0.0.1:5500",
@@ -121,43 +123,12 @@ func newRouter(authClient *auth.Client, firestoreClient *firestore.Client) http.
 		var keyID string
 		if credJSON != "" {
 			credLen = len(credJSON)
-			decoded, err := base64.StdEncoding.DecodeString(credJSON)
-			if err == nil {
-				// Simple json parsing to get private_key_id
-				type cred struct {
+			if decoded, err := base64.StdEncoding.DecodeString(credJSON); err == nil {
+				var c struct {
 					PrivateKeyID string `json:"private_key_id"`
 				}
-				var c cred
-				// We can import encoding/json, but Chi already has it or we can do a simple string search or import json
-				// Let's import encoding/json to be safe, or just use string search to avoid import issues.
-				// Actually, string search is extremely safe and doesn't require modifying imports.
-				// e.g. "private_key_id": "..."
-				importJSON := string(decoded)
-				importIDStart := 0
-				for i := 0; i < len(importJSON)-16; i++ {
-					if importJSON[i:i+16] == `"private_key_id"` {
-						importIDStart = i + 16
-						break
-					}
-				}
-				if importIDStart > 0 {
-					// find next quotes
-					quoteCount := 0
-					var start, end int
-					for i := importIDStart; i < len(importJSON); i++ {
-						if importJSON[i] == '"' {
-							quoteCount++
-							if quoteCount == 1 {
-								start = i + 1
-							} else if quoteCount == 2 {
-								end = i
-								break
-							}
-						}
-					}
-					if start > 0 && end > start {
-						keyID = importJSON[start:end]
-					}
+				if json.Unmarshal(decoded, &c) == nil {
+					keyID = c.PrivateKeyID
 				}
 			}
 		}
